@@ -9,7 +9,7 @@ const HomePage = () => {
     <div className="App d-flex align-items-center">
       <Container className="homepage">
         <Col className="text-center mt-4">
-          <h1>Aranan Şehir</h1>
+          <h1>Selected City</h1>
         </Col>
         <Col className="mx-3">
           <select className="search-bar rounded-pill"></select>
