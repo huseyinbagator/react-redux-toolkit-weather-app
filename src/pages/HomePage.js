@@ -23,6 +23,7 @@ const HomePage = () => {
       "Tuesday",
     ],
   };
+  
   return (
     <div className="App d-flex align-items-center">
       <Container className="homepage">
