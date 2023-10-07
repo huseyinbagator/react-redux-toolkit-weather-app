@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.js";
 import "./App.css";
 
 const App = () => {
+  
   return (
     <BrowserRouter>
       <Routes>
