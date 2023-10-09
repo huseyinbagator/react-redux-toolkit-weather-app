@@ -22,6 +22,7 @@ const weatherData = {
 const weatherSlice = createSlice({
   name: "weather",
   initialState: weatherData,
+  reducers: {},
   extraReducers: {},
 });
 
