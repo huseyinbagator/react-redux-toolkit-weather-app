@@ -3,27 +3,12 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const data = {
-    city: "Ankara",
-    heat: 40,
-    precipitation: 0,
-    moisture: 20,
-    wind: 15,
-    day: "Tuesday",
-    weather: "Sunny",
-    weekdays: [
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-      "Monday",
-      "Tuesday",
-    ],
-  };
-  
+  const data = useSelector((state) => state.weather);
+  console.log(data);
+
   return (
     <div className="App d-flex align-items-center">
       <Container className="homepage">
