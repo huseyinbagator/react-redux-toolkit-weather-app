@@ -1,16 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
-const KEY = "KEY";
+import getCityWeather from "../../api/weather";
+
 const initialState = {};
 
-export const getWeather = createAsyncThunk("getWeather", async (city) => {
-  const { data } = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`
-  );
-  console.log(data);
-  return data;
-});
+export const getWeather = createAsyncThunk("getWeather", getCityWeather);
 
 const weatherSlice = createSlice({
   name: "weather",
