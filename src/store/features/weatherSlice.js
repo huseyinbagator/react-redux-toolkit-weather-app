@@ -1,29 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const weatherData = {
-  city: "Ankara",
-  heat: 40,
-  precipitation: 0,
-  moisture: 20,
-  wind: 15,
-  day: "Tuesday",
-  weather: "Sunny",
-  weekdays: [
-    "Çarşamba",
-    "Perşembe",
-    "Cuma",
-    "Cumartesi",
-    "Pazar",
-    "Pazartesi",
-    "Salı",
-  ],
-};
+import getCityWeather from "../../api/weather";
+
+const initialState = {};
+
+export const getWeather = createAsyncThunk("getWeather", getCityWeather);
 
 const weatherSlice = createSlice({
   name: "weather",
-  initialState: weatherData,
+  initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getWeather.fulfilled, (state, action) => {
+      console.log(action.payload.wind);
+      state.name = action.payload.name;
+      state.wind = action.payload.wind;
+    });
+  },
 });
 
 export default weatherSlice.reducer;
