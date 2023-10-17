@@ -12,6 +12,7 @@ async function getCityWeather(city) {
     const response = await instance.get(
       `data/2.5/weather?q=${city}&appid=${KEY}&units=metric`
     );
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.log("API Error", error);

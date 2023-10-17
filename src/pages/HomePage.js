@@ -7,7 +7,6 @@ import { getWeather } from "../store/features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
-  
   const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
@@ -27,17 +26,23 @@ const HomePage = () => {
         <Col className="d-flex justify-content-center mt-3">
           <Row className="status-container bg-body d-flex justify-content-center align-items-center">
             <Col className="status-left m-1 d-flex align-items-center">
-              {/* <Col className="ms-4 fs-2 text">{data.heat}°C</Col> */}
+              <Col className="ms-4 fs-2 text">
+                {weather?.main?.feels_like || "Loading..."}
+                °C
+              </Col>
               <Col className="fs-5">
-                {/* <div>Precipitation:{data.precipitation}</div> */}
-                {/* <div>Moisture:{data.moisture}</div> */}
-                {/* <div>Wind:{data.wind}</div> */}
+                
               </Col>
             </Col>
             <Col className="status-right m-1 fs-5">
-              {/* <h3>Weather Forecast</h3> */}
-              {/* <div>{data.day}</div> */}
-              {/* <div>{data.weather}</div> */}
+              <h3>Weather Condition</h3>
+              <div>
+                {weather?.weather && weather.weather.length > 0
+                  ? `${weather.weather[0].main} Description: ${weather.weather[0].description}`
+                  : "Loading..."}
+              </div>
+
+              <div>Wind {weather?.wind?.speed || "Loading..."}</div>
             </Col>
           </Row>
         </Col>
