@@ -8,15 +8,10 @@ const instance = axios.create({
 });
 
 async function getCityWeather(city) {
-  try {
-    const response = await instance.get(
-      `data/2.5/weather?q=${city}&appid=${KEY}&units=metric`
-    );
-    console.log(response.data)
-    return response.data;
-  } catch (error) {
-    console.log("API Error", error);
-  }
+  const response = await instance.get(
+    `data/2.5/weather?q=${city}&appid=${KEY}&units=metric`
+  );
+  return response.data;
 }
 
 export default getCityWeather;
