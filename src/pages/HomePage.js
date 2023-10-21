@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import Button  from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -11,7 +12,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const [selectedCity, setSelectedCity] = useState("");
-  
+
   const cities = ["London", "İstanbul", "Ankara"];
 
   useEffect(() => {
@@ -27,6 +28,9 @@ const HomePage = () => {
   return (
     <div className="App d-flex align-items-center">
       <Container className="homepage">
+        <Col>
+          <Button>Change Theme</Button>
+        </Col>
         <Col className="text-center mt-4">
           <h1>{weather?.name || "Loading..."}</h1>
         </Col>
