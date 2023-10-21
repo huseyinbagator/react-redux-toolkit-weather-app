@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -10,9 +10,19 @@ const HomePage = () => {
   const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
+  const [selectedCity, setSelectedCity] = useState("");
+  
+  const cities = ["London", "İstanbul", "Ankara"];
+
   useEffect(() => {
-    dispatch(getWeather("London"));
-  }, [dispatch]);
+    if (selectedCity) {
+      dispatch(getWeather(selectedCity));
+    }
+  }, [dispatch, selectedCity]);
+
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
 
   return (
     <div className="App d-flex align-items-center">
@@ -21,7 +31,18 @@ const HomePage = () => {
           <h1>{weather?.name || "Loading..."}</h1>
         </Col>
         <Col className="mx-3">
-          <select className="search-bar rounded-pill"></select>
+          <select
+            value={selectedCity}
+            onChange={handleCityChange}
+            className="search-bar rounded-pill"
+          >
+            <option value="">Selected City</option>
+            {cities.map((city, index) => (
+              <option value={city} key={index}>
+                {city}
+              </option>
+            ))}
+          </select>
         </Col>
         <Col className="d-flex justify-content-center mt-3">
           <Row className="status-container bg-body d-flex justify-content-center align-items-center">
@@ -30,9 +51,7 @@ const HomePage = () => {
                 {weather?.main?.feels_like || "Loading..."}
                 °C
               </Col>
-              <Col className="fs-5">
-                
-              </Col>
+              <Col className="fs-5"></Col>
             </Col>
             <Col className="status-right m-1 fs-5">
               <h3>Weather Condition</h3>
