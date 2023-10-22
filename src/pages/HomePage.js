@@ -38,7 +38,7 @@ const HomePage = () => {
 
   return (
     <div className="App d-flex align-items-center">
-      <Container className="homepage">
+      <Container className={`homepage ${theme}`}>
         <Col>
           <Button onClick={changeTheme}>Change Theme</Button>
         </Col>
