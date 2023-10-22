@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 
-import Button  from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { getWeather } from "../store/features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../store/features/themeSlice";
 
 const HomePage = () => {
   const weather = useSelector((state) => state.weather);
+  const theme = useSelector((state) => state.theme.theme);
+
   const dispatch = useDispatch();
 
   const [selectedCity, setSelectedCity] = useState("");
@@ -25,11 +28,19 @@ const HomePage = () => {
     setSelectedCity(event.target.value);
   };
 
+  const changeTheme = () => {
+    dispatch(toggleTheme());
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
     <div className="App d-flex align-items-center">
       <Container className="homepage">
         <Col>
-          <Button>Change Theme</Button>
+          <Button onClick={changeTheme}>Change Theme</Button>
         </Col>
         <Col className="text-center mt-4">
           <h1>{weather?.name || "Loading..."}</h1>
