@@ -34,3 +34,15 @@
   width: 95%;
   height: 150px;
 }
+
+/* Theme Section */
+
+body.dark {
+  background-color:rgb(19, 19, 75);
+  color: #ffff;
+}
+
+.homepage.dark {
+  background-color:#37363d;
+  color: #ffff;
+}
